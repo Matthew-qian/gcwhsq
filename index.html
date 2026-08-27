@@ -52,8 +52,43 @@
         }
         .nav-links a:hover {
             color: #42b983;
+        .banner-wrap {
+            max-width: 1200px;
+            margin: 30px auto 0
+            display: grif
+            grid-template-columns: 1fr 300px;
+             gap: 16px;
+             padding: 0 20px;
+         }
+         .banner-left img {
+             width: 100%;
+             border-radius: 8px;
+         }
+         .banner-right .sidebar-box {
+             background: #fff;
+             padding:20px;
+             border-radius:8px;
+             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+             margin-bottom:12px;
+         }
+         .banner-right .sidebar-box h3 {
+             border-bottom: 2px solid #eee;
+             padding-bottom:8px;
+             margin-bottom:12px;
+         }
+         .banner-right .sidebar-box ul {
+             list-style: none;
+         }
+         .banner-right .sidebar-box li a {
+             color:#555;
+             text-decoration:none;
+             line-height:2;
+         }
+         .banner-right .sidebar-box li a:hover {
+             color:#42b983;
+         }
         }
-        /* 主体容器 */
+        /* 主体容器 */ 
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -158,13 +193,11 @@
     </header>
 
     <!-- 主体内容 -->
-    <div class="container">
-        <!-- 文章列表区域 -->
-     <dic class="left-banner">
-              <img src="https://i.imgs.ovh/2026/08/27/5e3c429fc545a51faffa299286d5cc06.png" alt="共文C娘来了哦" width="564px"
+    < class="banner-wrap">
+        <dic class="banner-left">
+              <img src="https://i.imgs.ovh/2026/08/27/5e3c429fc545a51faffa299286d5cc06.png" alt="共文C娘来了哦"
         </div>
-     <!-- 侧边栏 -->
-     <aside class="sidebar">
+        <div class="banner-right">
             <div class="sidebar-box">
                 <h3>关于本站</h3>
                 <p>一个有关''共C文化社区[特别大饼计划]的实验项目</p>
