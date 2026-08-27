@@ -1,15 +1,15 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 网站标签图标 favicon，替换href换成你自己的图标 -->
+    <link rel="icon" href="favicon.png" type="image/png">
     <title>共C文化社区</title>
     <link rel="shortcut icon" href="https://i.imgs.ovh/2026/08/27/91fa1040193c58b1bc737da14444fc35.png">
     <link rel="icon" href="https://i.imgs.ovh/2026/08/27/91fa1040193c58b1bc737da14444fc35.png">
     <style>
         * {
-            margin: 0;  
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: "Microsoft Yahei", sans-serif;
@@ -19,10 +19,11 @@
             color: #114514;
             line-height: 1.7;
         }
-        img{
-            max-width:100%
-            height:auto;
-            dispaly:block;
+        /* 全局图片自适应（所有图片自动适配手机） */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
         /* 导航栏 */
         header {
@@ -52,49 +53,53 @@
         }
         .nav-links a:hover {
             color: #42b983;
+        }
+
+        /* ========== 新增：顶部横幅区域【左大图 + 右侧边栏】 ========== */
         .banner-wrap {
             max-width: 1200px;
-            margin: 30px auto 0
-            display: grif
+            margin: 30px auto 0;
+            display: grid;
+            /* 左边自适应填充，右侧固定300px，顺序不能反！保证侧栏在右 */
             grid-template-columns: 1fr 300px;
-             gap: 16px;
-             padding: 0 20px;
-         }
-         .banner-left img {
-             width: 100%;
-             border-radius: 8px;
-         }
-         .banner-right .sidebar-box {
-             background: #fff;
-             padding:20px;
-             border-radius:8px;
-             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-             margin-bottom:12px;
-         }
-         .banner-right .sidebar-box h3 {
-             border-bottom: 2px solid #eee;
-             padding-bottom:8px;
-             margin-bottom:12px;
-         }
-         .banner-right .sidebar-box ul {
-             list-style: none;
-         }
-         .banner-right .sidebar-box li a {
-             color:#555;
-             text-decoration:none;
-             line-height:2;
-         }
-         .banner-right .sidebar-box li a:hover {
-             color:#42b983;
-         }
+            gap: 16px;
+            padding: 0 20px;
         }
-        /* 主体容器 */ 
+        .banner-left img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .banner-right .sidebar-box {
+            background: #fff;
+            padding:20px;
+            border-radius:8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom:12px;
+        }
+        .banner-right .sidebar-box h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom:8px;
+            margin-bottom:12px;
+        }
+        .banner-right .sidebar-box ul {
+            list-style: none;
+        }
+        .banner-right .sidebar-box li a {
+            color:#555;
+            text-decoration:none;
+            line-height:2;
+        }
+        .banner-right .sidebar-box li a:hover {
+            color:#42b983;
+        }
+
+        /* 主体文章容器 */
         .container {
             max-width: 1200px;
             margin: 30px auto;
             display: grid;
-            grid-template-columns: 70% 28%;
-            gap: 2%;
+            grid-template-columns: 1fr 300px;
+            gap: 16px;
             padding: 0 20px;
         }
         /* 文章卡片 */
@@ -125,7 +130,7 @@
             color:#42b983;
             text-decoration:none;
         }
-        /* 侧边栏 */
+        /* 侧边栏（下方文章区域侧边栏） */
         .sidebar-box {
             background: #fff;
             padding:20px;
@@ -157,8 +162,11 @@
             padding:24px;
             margin-top:40px;
         }
-        /* 移动端适配 */
+        /* ========== 移动端适配：小于768px自动上下排列 ========== */
         @media (max-width:768px){
+            .banner-wrap {
+                grid-template-columns: 1fr;
+            }
             .container {
                 grid-template-columns: 100%;
             }
@@ -180,39 +188,40 @@
         <div class="nav-container">
             <div class="logo">
                 <img scr="https://i.imgs.ovh/2026/08/27/012dbf05667179305fbe7cdaa1cd026b.png"alt="共C文化社区△5GT"
-                style="height:32px";vertical-align:middle;margin-right:8px;">
-                  
-                  </div>
+                :margin-right;">
+            </div>
             <nav class="nav-links">
                 <a href="#">首页</a>
-                <a href="#">论坛</a>
-                <a href="#">客服</a> 
+                <a href="#">论坛(开发中)</a>
+                <a href="#">客服</a>
                 <a href="#">小游戏</a>
             </nav>
         </div>
     </header>
 
-    <!-- 主体内容 -->
-    < class="banner-wrap">
-        <dic class="banner-left">
-              <img src="https://i.imgs.ovh/2026/08/27/5e3c429fc545a51faffa299286d5cc06.png" alt="共文C娘来了哦"
+    <!-- ===================== 顶部横幅：左侧大图 + 右侧侧边栏 ===================== -->
+    <div class="banner-wrap">
+        <div class="banner-left">
+            <!-- 把这里的图片换成你的【共C娘图片】 -->
+            <img src="https://i.imgs.ovh/2026/08/27/5e3c429fc545a51faffa299286d5cc06.png" alt="共C娘来了哦">
+            
+            <img src="https://i.imgs.ovh/2026/08/27/d8197e38a7ff74ab143963a936c2a3b7.jpg" alt="共C娘来了哦">
         </div>
         <div class="banner-right">
             <div class="sidebar-box">
                 <h3>关于本站</h3>
-                <p>一个有关''共C文化社区[特别大饼计划]的实验项目</p>
+                <p>一个有关“共C文化社区[特别大饼计划]的实验项目</p>
             </div>
             <div class="sidebar-box">
                 <h3>文章分类</h3>
                 <ul>
-                    <li><a href="#"></a></li>
                     <li><a href="#">相关介绍</a></li>
                     <li><a href="#">神秘大图</a></li>
                     <li><a href="#">俊库里素材</a></li>
                 </ul>
             </div>
             <div class="sidebar-box">
-                <h3>友情链接和群聊</h3>
+                <h3>友情链接和群聊与服务器</h3>
                 <ul>
                     <li><a href="https://qm.qq.com/q/Y6WvOpiKSQ">共C文化社群QQ本部</a></li>
                     <li><a href="https://qm.qq.com/q/GNxpAUHvS8">二哈局QQ本部</a></li>
@@ -220,19 +229,32 @@
                     <li><a href="https://mfuns.net/feed/255139">废土避难所mfuns本部</a></li>
                     <li><a href="http://scp-mfuns.wikidot.com/">SCP基金会喵分</a></li>
                     <li><a href="http://backrooms-mfuns.wikidot.com/">喵室</a></li> 
-                    <li><a href="http://193.112.93.102/">Pepon星（关闭）</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-box">
-                <h3>服务器导航</h3>
-                <ul>
+                    <li><a href="http://193.112.93.102/">Pepon星（关闭）</a></li> 
                     <li><a href="193.112.93.102">pepon-fumo器（暂时关闭）</a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li> 
-                    <li><a href=""></a></li>
                 </ul>
             </div>
-        </aside>
+                </ul>
+        </div>
+    </div>
+
+    <!-- 主体文章列表 -->
+    <div class="container">
+        <main class="article-list">
+            <div class="article-card">
+                <h2><a href="#"></a>共文C未来宣言</h2>
+                <div class="article-meta">共存主义毛豆纪元 2016-2022-2025-2026</div>
+                <p class="article-excerpt">以友谊与团结之名向群C民们发出保证，确认与C民的谈论、讨论、创作、分享、交换等合理自由.......
+</a>
+            </div>
+            <div class="article-card">
+                <h2><a href="#"></a></h2>
+                <div class="article-meta"></div>
+                <p class="article-excerpt"></p>
+                <a href="#" class="read-more"></a>
+            </div>
+        </main>
+
+       
     </div>
 
     <!-- 页脚 -->
