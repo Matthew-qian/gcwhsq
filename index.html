@@ -1,23 +1,206 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>共C文化社区【存疑】</title
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 网站标签图标 favicon，替换href换成你自己的图标 -->
+    <title>共C文化社区</title>
     <link rel="shortcut icon" href="https://i.imgs.ovh/2026/08/27/91fa1040193c58b1bc737da14444fc35.png">
     <link rel="icon" href="https://i.imgs.ovh/2026/08/27/91fa1040193c58b1bc737da14444fc35.png">
-    <style> 
-      body {
-        margin: 0;
-      }
+    <style>
+        * {
+            margin: 0;  
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #39c5bb;
+            color: #114514;
+            line-height: 1.7;
+        }
+        /* 导航栏 */
+        header {
+            background: #2e8b8b;
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 24px;
+        }
+        .nav-links a:hover {
+            color: #42b983;
+        }
+        /* 主体容器 */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 70% 28%;
+            gap: 2%;
+            padding: 0 20px;
+        }
+        /* 文章卡片 */
+        .article-card {
+            background: #fff;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .article-card h2 a {
+            color: #222;
+            text-decoration: none;
+        }
+        .article-card h2 a:hover {
+            color: #42b983;
+        }
+        .article-meta {
+            color: #888;
+            font-size: 14px;
+            margin:8px 0 12px;
+        }
+        .article-excerpt {
+            color: #555;
+            margin-bottom:12px;
+        }
+        .read-more {
+            color:#42b983;
+            text-decoration:none;
+        }
+        /* 侧边栏 */
+        .sidebar-box {
+            background: #fff;
+            padding:20px;
+            border-radius:8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom:20px;
+        }
+        .sidebar-box h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom:8px;
+            margin-bottom:12px;
+        }
+        .sidebar-box ul {
+            list-style: none;
+        }
+        .sidebar-box li a {
+            color:#555;
+            text-decoration:none;
+            line-height:2;
+        }
+        .sidebar-box li a:hover {
+            color:#42b983;
+        }
+        /* 页脚 */
+        footer {
+            background:#2e8b8b;
+            color:#aaa;
+            text-align:center;
+            padding:24px;
+            margin-top:40px;
+        }
+        /* 移动端适配 */
+        @media (max-width:768px){
+            .container {
+                grid-template-columns: 100%;
+            }
+            .nav-container {
+                flex-direction:column;
+                gap:10px;
+            }
+            .nav-links {
+                display:flex;
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div style=" text-align: center">
-      <img src="https://i.imgs.ovh/2026/08/27/23e8e1ff49e051a5f78fb0c079ec5366.png" alt="忧郁共文C娘" width="160px"
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img scr="https://i.imgs.ovh/2026/08/27/012dbf05667179305fbe7cdaa1cd026b.png"alt="共C文化社区△5GT"
+                style="height:32px";vertical-align:middle;margin-right:8px;">
+                  
+                  </div>
+            <nav class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">论坛</a>
+                <a href="#">客服</a> 
+                <a href="#">小游戏</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <div class="container">
+        <!-- 文章列表区域 -->
+              <img src="https://i.imgs.ovh/2026/08/27/5e3c429fc545a51faffa299286d5cc06.png" alt="共文C娘来了哦" width="564px"
+              
+        
+
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <h3>关于本站</h3>
+                <p>一个有关''共C文化社区[特别大饼计划]的实验项目</p>
+            </div>
+            <div class="sidebar-box">
+                <h3>文章分类</h3>
+                <ul>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">相关介绍</a></li>
+                    <li><a href="#">神秘大图</a></li>
+                    <li><a href="#">俊库里素材</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h3>友情链接和群聊</h3>
+                <ul>
+                    <li><a href="https://qm.qq.com/q/Y6WvOpiKSQ">共C文化社群QQ本部</a></li>
+                    <li><a href="https://qm.qq.com/q/GNxpAUHvS8">二哈局QQ本部</a></li>
+                    <li><a href="https://qm.qq.com/q/NIWNmYSwE2">废土避难所QQ本部</a></li>
+                    <li><a href="https://mfuns.net/feed/255139">废土避难所mfuns本部</a></li>
+                    <li><a href="http://scp-mfuns.wikidot.com/">SCP基金会喵分</a></li>
+                    <li><a href="http://backrooms-mfuns.wikidot.com/">喵室</a></li> 
+                    <li><a href="http://193.112.93.102/">Pepon星（关闭）</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h3>服务器导航</h3>
+                <ul>
+                    <li><a href="193.112.93.102">pepon-fumo器（暂时关闭）</a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li> 
+                    <li><a href=""></a></li>
+                </ul>
+            </div>
+        </aside>
     </div>
-    <div style=" font-size:q2px">
-      <p>维修中</p>
-    </div>
-  </body>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 共C文化社区COEXIST/CPRC★五股团</p>
+    </footer>
+</body>
 </html>
