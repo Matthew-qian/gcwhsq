@@ -1,1 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>联盟全域监控终端｜实时终端</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #42b8a3;
+  font-family: "Consolas", "Microsoft Yahei", monospace;
+  padding: 12px;
+}
+
+.terminal {
+  border: 4px solid #000;
+  display: grid;
+  gap: 4px;
+  background: #0a2c28;
+  padding: 6px;
+  max-width: 1700px;
+  margin: 0 auto;
+  grid-template-columns: 2fr 1.3fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  position: relative;
+}
+
+.top-bar {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 120px 120px 1fr 320px 240px;
+  gap: 4px;
+}
+
+.cell {
+  border: 3px solid #000;
+  background: #205c54;
+  padding: 6px;
+  color: #e8ffef;
+  overflow: hidden;
+}
+
+/* 旗帜图片区 */
+.flag {
+  background: #133b36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 地图图片区 */
+.map {
+  background: #133b36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.map img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.star-system {
+  background: #0f3330;
+  position: relative;
+}
+
+.main-left {
+  grid-column: 1;
+  grid-row: 2 / 4;
+}
+
+.main-mid {
+  grid-column: 2;
+  grid-row: 2 / 4;
+}
+
+.main-right {
+  grid-column: 3;
+  grid-row: 2 / 4;
+}
+
+.headline-date {
+  font-size: 34px;
+  font-weight: bold;
+  color: #e6ffed;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+#realtime-date {
+  color: #ffe666;
+}
+
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26px;
+  margin: 12px 0;
+}
+
+.good {
+  color: #89ff66;
+}
+
+.doing {
+  color: #ffe666;
+}
+
+.warn {
+  color: #ff5959;
+}
+
+.small-text {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.bottom-slogan {
+  display: flex;
+  gap: 16px;
+  font-size: 28px;
+  margin-top: 16px;
+}
+
+.c { color: #77ff77; }
+.f { color: #ff99bb; }
+.l { color: #ff7777; }
+.p { color: #77b8ff; }
+
+.officer-card {
+  border: 2px solid #000;
+  width: 160px;
+  height: 210px;
+  margin: 6px auto;
+  background: #286b63;
+}
+
+/* CRT 扫描线 */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(16, 70, 60, 0.08) 0px,
+    rgba(16, 70, 60, 0.08) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.4;
+  z-index: 10;
+}
+
+/* 噪点层 */
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 11;
+}
+
+/* 屏幕上下卷动 */
+@keyframes vroll {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+.terminal {
+  animation: vroll 0.18s infinite alternate ease-in-out;
+}
+</style>
+</head>
+
+<body>
+
+<div class="terminal">
+
+  <!-- 顶部栏 -->
+  <div class="top-bar">
+    <div class="cell">
+      <!-- 头像位1 -->
+    </div>
+
+    <div class="cell">
+      <!-- 头像位2 -->
+    </div>
+
+    <!-- 旗帜图片位 -->
+    <div class="cell flag">
+      <img src="flag.png" alt="旗帜" onerror="this.style.display='none';this.parentNode.style.background='#c0392b';" />
+    </div>
+
+    <!-- 地图图片位 -->
+    <div class="cell map">
+      <img src="map.png" alt="地图" onerror="this.style.display='none';this.parentNode.style.background='#133b36';" />
+    </div>
+
+    <div class="cell star-system">
+      <br />
+      
+    </div>
+  </div>
+
+  <!-- 左侧主面板 -->
+  <div class="cell main-left">
+    <div class="headline-date">
+      <span id="realtime-date">4516年9月15日</span>
+      <span>一切正常</span>
+    </div>
+
+    <div style="font-size:28px;color:#82e878;margin:10px 0;">
+      统计计算局管理——全自动分配系统
+    </div>
+
+    <div class="list-row">
+      <span>“仓库”体系运作情况</span>
+      <span class="good">良好</span>
+    </div>
+
+    <div class="list-row">
+      <span>各传送门运行情况</span>
+      <span class="good">良好</span>
+    </div>
+
+    <div class="list-row">
+      <span>新地区探索与改造</span>
+      <span class="doing">进行中</span>
+    </div>
+
+    <div class="list-row">
+      <span>近七地球日科研项目批准7811项</span>
+    </div>
+
+    <div class="list-row">
+      <span>全域互联网机制更新</span>
+      <span>…</span>
+    </div>
+
+    <div class="list-row">
+      <span>多元广播中</span>
+      <span>…</span>
+    </div>
+
+    <div class="list-row">
+      <span>边区对非法药物打击计划</span>
+      <span class="warn">!</span>
+    </div>
+
+    <div class="bottom-slogan">
+      <span class="c">共存</span>
+      <span class="f">友谊</span>
+      <span class="l">解放</span>
+      <span class="p">保护</span>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:6px;">
+      <span class="c">COEXIST</span>
+      <span class="f">FRIENDSHIP</span>
+      <span class="l">LIBERATION</span>
+      <span class="p">PROTECTION</span>
+    </div>
+  </div>
+
+  <!-- 中间新闻面板 -->
+  <div class="cell main-mid">
+    <div style="font-size:32px;">
+      HELLO ㅇㅅㅇ<br />
+      本日新闻头条
+    </div>
+
+    <div style="font-size:28px;color:#ff7777;margin:8px 0;">热搜一</div>
+    <div class="small-text">
+      边区萨拉赫尔星系外环地区发现未知魔法病毒，外围生命部对于该地区已发布封控的指令
+    </div>
+
+    <div style="font-size:28px;color:#ff7777;margin:12px 0 8px;">热搜二</div>
+    <div class="small-text">
+      计算局拟修改有关世界、宇宙与维度的条目编码机制，未来将使用纯数字和符号构成的编码，如本世界为 “2‑16‑51”
+    </div>
+
+    <div style="margin-top:18px;text-align:center;font-size:22px;">
+      本次联盟值周官
+    </div>
+
+    <div class="officer-card">
+      <!-- 值周官图片位 -->
+    </div>
+
+    <div style="text-align:center;">
+      4216.9.9‑4216.9.16
+    </div>
+  </div>
+
+  <!-- 右侧数据面板 -->
+  <div class="cell main-right">
+    <div class="small-text">
+      试 暗<br />
+      2‑MC‑51绿果<br />
+      全界观测中… 正常<br /><br />
+      新设编号中 本周新发现:2<br />
+      已建立观测机制的观测中:58%<br />
+      已建立传送连接机制的连接中:100%<br />
+      我部CPRC<br />
+      对已发现宇宙以及维度
+    </div>
+  </div>
+
+</div>
+
+<div class="scanline"></div>
+<div class="noise"></div>
+
+<script>
+// 实时北京时间
+function updateTime() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+
+  const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
+  const week = weekDays[now.getDay()];
+
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+
+  const dateEl = document.getElementById("realtime-date");
+  dateEl.textContent = `${year}年${month}月${day}日 星期${week} ${hours}:${minutes}:${seconds}`;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+
+// 轻微随机抖动
+const term = document.querySelector(".terminal");
+setInterval(() => {
+  if (Math.random() > 0.92) {
+    const offset = (Math.random() - 0.5) * 6;
+    term.style.transform = `translateX(${offset}px)`;
+    setTimeout(() => {
+      term.style.transform = "";
+    }, 60);
+  }
+}, 120);
+
+// 扫描线亮度变化
+const scan = document.querySelector(".scanline");
+setInterval(() => {
+  scan.style.opacity = 0.32 + Math.random() * 0.18;
+}, 200);
+</script>
+
+</body>
+</html>
 
